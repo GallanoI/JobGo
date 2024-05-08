@@ -1,0 +1,56 @@
+// Definición de variables
+$background-color: #f4f4f4;
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$border-color: #ccc;
+
+// Fuentes y otros
+$font-stack: Arial, sans-serif;
+$border-radius: 4px;
+$form-width: 300px;
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $background-color;
+  
+    .login-form {
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background: white;
+      width: $form-width;
+  
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+  
+      .form-group {
+        margin-bottom: 15px;
+      }
+  
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+      }
+  
+      .login-button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: $border-radius;
+        background-color: $primary-color;
+        color: white;
+        cursor: pointer;
+        &:hover {
+          background-color: $primary-hover;
+        }
+      }
+    }
+  }
+  
