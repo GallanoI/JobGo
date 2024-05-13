@@ -7,7 +7,7 @@ JobGO App es una aplicacion diseñada para facilitar la conexion entre conductor
 
 Antes de comenzar, asegurate de tener instalado Node.js y Angular CLI en tu sistema. Si no los tienes instalados, puedes descargarlos e instalarlos desde:
 
-- Node.js: [https://nodejs.org/](https://nodejs.org/) Si no funciona usar nvm poravro esto arregla todo
+- Node.js: [https://nodejs.org/](https://nodejs.org/) Si no funciona usar nvm por favor, esto arregla todo.
 - Angular CLI: Ejecuta `npm install -g @angular/cli` en tu terminal
 
 ## Configuracion del Proyecto
