@@ -14,15 +14,19 @@ $form-width: 300px;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: $background-color;
-  
+    width: 100%;
+    background-image: url("/assets/img/ValpoFondo.jpg");
+    background-position: center;
+    background-size: cover;
+
     .login-form {
+      border: 1px solid lightgreen;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       background: white;
       width: $form-width;
-  
+
       h2 {
         text-align: center;
         margin-bottom: 20px;
@@ -34,7 +38,8 @@ $form-width: 300px;
   
       .form-control {
         width: 100%;
-        padding: 10px;
+        padding: 10px 0px;
+        text-align-last: center;
         border: 1px solid $border-color;
         border-radius: $border-radius;
       }
