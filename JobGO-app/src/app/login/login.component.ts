@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     console.log(this.loginForm.value.username)
     console.log(this.loginForm.value.password)
-    if (this.loginForm.value.username === 'user' && this.loginForm.value.password === '2458') {
+    if (this.loginForm.value.username === '2458' && this.loginForm.value.password === 'otro') {
       // Redirige al usuario a la pantalla de selección de rol
       this.router.navigate(['/select-role']);
     } else {
