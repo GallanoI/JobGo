@@ -1,9 +1,13 @@
 const express = require('express');
+const cors = require('cors'); // Importar cors
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const app = express();
 
+
 app.use(express.json());
+app.use(cors()); // Usar cors para permitir solicitudes desde cualquier origen
+
 
 const usersFile = 'users.json';
 const viajesFile = 'viajes.json';
