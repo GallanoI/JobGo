@@ -14,7 +14,6 @@ $form-width: 300px;
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    margin-right: auto;
     height: 100vh;
     width: 100vw;
     background-image: url("/assets/img/ValpoFondo.jpg");
@@ -22,11 +21,10 @@ $form-width: 300px;
     background-size: cover;
 
     .reg-form {
-      border: 1px solid lightgreen;
+      border: 1px solid rgb(135, 199, 236);
       padding: 5px;
       align-items: center;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       background: white;
@@ -56,9 +54,10 @@ $form-width: 300px;
         width: 100%;
         padding: 10px;
         border: none;
+      
         border-radius: $border-radius;
         background-color: $primary-color;
-        color: white;
+        color: blue;
         cursor: pointer;
         &:hover {
           background-color: $primary-hover;

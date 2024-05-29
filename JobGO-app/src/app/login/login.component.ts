@@ -35,6 +35,41 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     console.log(this.loginForm.value.username)
     console.log(this.loginForm.value.password)
+    //FETCH  
+    function handleResponse(response: Response): Promise<any> {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    }
+    
+    function handleError(error: Error): void {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+    
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "mail": this.loginForm.value.username,
+        "password": this.loginForm.value.password
+      })
+    })
+      .then(handleResponse)
+      .then((data: any) => {
+        console.log(data);
+
+
+
+      })
+      .catch(handleError);
+
+
+
+
+    //
     if (this.loginForm.value.username === 'user' && this.loginForm.value.password === '2458') {
       // Redirige al usuario a la pantalla de selección de rol
       this.router.navigate(['/select-role']);
