@@ -1,46 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; // Importar Router
-
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Importar CommonModule
 
 @Component({
   selector: 'app-reg',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule], // Incluir CommonModule
   templateUrl: './reg.component.html',
-  styleUrl: './reg.component.scss'
+  styleUrls: ['./reg.component.scss']
 })
-
 export class RegComponent implements OnInit {
-  regForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
-  });
+  regForm: FormGroup;
+  loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { // Inyectar Router
-
+  constructor(private fb: FormBuilder, private router: Router) {
     this.regForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
-  }
-
-  ngOnInit() {
-    this.regForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
+  ngOnInit() {}
+
   onSubmit(): void {
-    console.log(this.regForm.value.username)
-    console.log(this.regForm.value.password)
-    if (this.regForm.value.username === 'user' && this.regForm.value.password === '2458') {
-      // Redirige al usuario a la pantalla de selección de rol
-      this.router.navigate(['/select-role']);
-    } else {
-      // Opcional: Mostrar un mensaje de error si los datos son incorrectos
-      alert('Usuario o contraseña incorrectos');
+    this.loading = true;
+    const username = this.regForm.value.username;
+    const email = this.regForm.value.email;
+    const password = this.regForm.value.password;
+
+    fetch('http://localhost:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: username,
+        mail: email,
+        password: password,
+        user_type: "Conductor"
+      })
+    })
+      .then(this.handleResponse)
+      .then((data: any) => {
+        this.loading = false;
+        alert('Registro exitoso');
+        this.router.navigate(['/login']);
+      })
+      .catch((error: Error) => {
+        this.loading = false;
+        this.handleError(error);
+      });
+  }
+
+  private handleResponse(response: Response): Promise<any> {
+    if (!response.ok) {
+      return response.json().then((err) => {
+        throw new Error(err.message || 'Network response was not ok');
+      });
     }
+    return response.json();
+  }
+
+  private handleError(error: Error): void {
+    console.error('There has been a problem with your fetch operation:', error);
+    alert(`Error: ${error.message}`);
   }
 }
