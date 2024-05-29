@@ -1,81 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router'; // Importar Router
-
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule], // Incluir CommonModule en las importaciones
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
-
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
-  });
+  loginForm: FormGroup;
+  loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router) { // Inyectar Router
-
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
-  }
-
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
+  ngOnInit() {}
+
   onSubmit(): void {
-    console.log(this.loginForm.value.username)
-    console.log(this.loginForm.value.password)
-    //FETCH  
-    function handleResponse(response: Response): Promise<any> {
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-      return response.json();
-    }
-    
-    function handleError(error: Error): void {
-      console.error('There has been a problem with your fetch operation:', error);
-    }
-    
+    this.loading = true;
+    const username = this.loginForm.value.username;
+    const password = this.loginForm.value.password;
+
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "mail": this.loginForm.value.username,
-        "password": this.loginForm.value.password
+        mail: username,
+        password: password
       })
     })
-      .then(handleResponse)
+      .then(this.handleResponse)
       .then((data: any) => {
-        console.log(data);
-
-
-
+        this.loading = false;
+        if (data.token) {
+          localStorage.setItem('authToken', data.token);
+          this.router.navigate(['/select-role']);
+        } else {
+          alert('No se recibió token, inicio de sesión fallido');
+        }
       })
-      .catch(handleError);
+      .catch((error: Error) => {
+        this.loading = false;
+        this.handleError(error);
+      });
+  }
 
-
-
-
-    //
-    if (this.loginForm.value.username === 'user' && this.loginForm.value.password === '2458') {
-      // Redirige al usuario a la pantalla de selección de rol
-      this.router.navigate(['/select-role']);
-    } else {
-      // Opcional: Mostrar un mensaje de error si los datos son incorrectos
-      alert('Usuario o contraseña incorrectos');
+  private handleResponse(response: Response): Promise<any> {
+    if (!response.ok) {
+      return response.json().then((err) => {
+        throw new Error(err.message || 'Network response was not ok');
+      });
     }
+    return response.json();
+  }
+
+  private handleError(error: Error): void {
+    console.error('There has been a problem with your fetch operation:', error);
+    alert(`Error: ${error.message}`);
   }
 }
