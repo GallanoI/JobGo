@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Miguel",
+    "Mail": "miguel@miguel.cl",
+    "password": "12345",
+    "user_type": "Conductor",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzE2OTQ5NjI5LCJleHAiOjE3MTY5NTMyMjl9.pQ1EUGxUylhe1HVAW22K154cNW_IJ63bO1im-nikL9E"
+  },
+  {
+    "id": 2,
+    "name": "Vicente",
+    "Mail": "Vicente@Vicente.cl",
+    "password": "12345",
+    "user_type": "Pasajero"
+  },
+  {
+    "id": 3,
+    "name": "Malena",
+    "Mail": "Malena@Malena.cl",
+    "password": "12345",
+    "user_type": "Pasajero"
+  },
+  {
+    "id": 4,
+    "name": "Gallano",
+    "Mail": "Gallano@Gallano.cl",
+    "password": "12345",
+    "user_type": "Pasajero"
+  },
+  {
+    "id": 5,
+    "name": "Nuevo usuario",
+    "mail": "Cor@reo.cl",
+    "password": "Password123",
+    "user_type": "Conductor"
+  },
+  {
+    "id": 6,
+    "name": "Nuevo usuario",
+    "mail": "C123123or@reo.cl",
+    "password": "Password1",
+    "user_type": "Conductor"
+  },
+  {
+    "id": 7,
+    "name": "Nuevo usuario",
+    "mail": "C123112323or@reo.cl",
+    "password": "pAssword1",
+    "user_type": "Conductor"
+  }
+]
