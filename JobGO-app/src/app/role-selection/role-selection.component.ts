@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './role-selection.component.html',
-  styleUrl: './role-selection.component.sass'
+  styleUrl: './role-selection.component.scss'
 })
 
 export class RoleSelectionComponent {
