@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Miguel",
+        "User": "miguel@miguel.cl",
+        "password": "12345",
+        "user_type": "Conductor"
+    },
+    {
+        "id": 2,
+        "name": "Vicente",
+        "User": "Vicente@Vicente.cl",
+        "password": "12345",
+        "user_type": "Pasajero"
+    },
+    {
+        "id": 3,
+        "name": "Malena",
+        "User": "Malena@Malena.cl",
+        "password": "12345",
+        "user_type": "Pasajero"
+    },
+    {
+        "id": 4,
+        "name": "Gallano",
+        "User": "Gallano@Gallano.cl",
+        "password": "12345",
+        "user_type": "Pasajero"
+    }
+]
