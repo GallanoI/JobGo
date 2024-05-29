@@ -9,12 +9,10 @@ const usersFile = 'users.json';
 const viajesFile = 'viajes.json';
 const secretKey = 'your-secret-key'; // Cambia esta clave a algo más seguro y guárdala en variables de entorno en producción
 
-
 const getUsers = () => {
     const data = fs.readFileSync(usersFile);
     return JSON.parse(data);
 };
-
 
 const saveUsers = (users) => {
     fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
@@ -29,10 +27,14 @@ const saveViajes = (viajes) => {
     fs.writeFileSync(viajesFile, JSON.stringify(viajes, null, 2));
 };
 
-
 // Middleware para verificar el token
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+        return res.status(403).json({ message: 'Token requerido' });
+    }
+
+    const token = authHeader.split(' ')[1]; // Separar "Bearer" del token
     if (!token) {
         return res.status(403).json({ message: 'Token requerido' });
     }
@@ -42,14 +44,6 @@ const verifyToken = (req, res, next) => {
             return res.status(401).json({ message: 'Token inválido' });
         }
         req.userId = decoded.id;
-
-        // Verificar que el cuerpo de la solicitud sea JSON si no está vacío
-        if (req.body && Object.keys(req.body).length > 0) {
-            if (req.headers['content-type'] !== 'application/json') {
-                return res.status(400).json({ message: 'El contenido debe ser JSON' });
-            }
-        }
-
         next();
     });
 };
@@ -63,7 +57,7 @@ app.post('/login', (req, res) => {
     }
 
     const users = getUsers();
-    const user = users.find(u => u.Mail === mail && u.password === password);
+    const user = users.find(u => u.mail === mail && u.password === password);
 
     if (!user) {
         return res.status(400).json({ message: 'Usuario o contraseña incorrectos' });
@@ -92,22 +86,23 @@ app.get('/me', verifyToken, (req, res) => {
 
 // Endpoint para registrar un nuevo usuario
 app.post('/register', (req, res) => {
-    const { name, Mail, password, user_type } = req.body;
+    const { name, mail, password, user_type } = req.body;
 
-    if (!name || !Mail || !password || !user_type) {
+    if (!name || !mail || !password || !user_type) {
         return res.status(400).json({ message: 'Todos los campos son requeridos' });
     }
     
-    if (!Mail.includes("@") || !Mail.endsWith(".com")|| !Mail.endsWith(".cl")) {
+    if (!mail.includes("@") || !(  mail.endsWith(".com") ||  mail.endsWith(".cl"))  ) {
         return res.status(400).json({ message: 'Formato de E-mail incorrecto' });
     }
     
-    if (password.length <= 8 || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(password)) {
-        return res.status(400).json({ message: 'La contraseña es debil' });
+    if (password.length <= 8 || !(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/.test(password))) {
+        return res.status(400).json({ message: 'La contraseña es débil' });
     }
+    
 
     const users = getUsers();
-    const userExists = users.some(user => user.Mail === Mail);
+    const userExists = users.some(user => user.mail === mail);
 
     if (userExists) {
         return res.status(400).json({ message: 'El usuario ya existe' });
@@ -116,7 +111,7 @@ app.post('/register', (req, res) => {
     const newUser = {
         id: users.length + 1,
         name,
-        Mail,
+        mail,
         password,
         user_type
     };
@@ -126,7 +121,6 @@ app.post('/register', (req, res) => {
 
     res.status(201).json({ message: 'Usuario registrado exitosamente', user: newUser });
 });
-
 
 // Endpoint para subir un nuevo viaje
 app.post('/new-viaje', verifyToken, (req, res) => {
