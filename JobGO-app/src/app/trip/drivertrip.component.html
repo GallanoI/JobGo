@@ -1,0 +1,31 @@
+<div class="fondo-container">
+    <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width= 70%>
+    <form class="drivertrip-form">
+        <div class="drivertrip-container">
+            <h2 text-align: center>Seleccione su Ruta</h2>
+            <div class="form-group">
+                <input formControlName="INICIOR" type="text" placeholder="Inicio de la Ruta" class="form-control">
+            </div>
+            <div class="form-group">
+                
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="drivertrip-container">
+    <div class="img-container">
+      <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width= 70%>
+      <form [formGroup]="drivertripForm" (ngSubmit)="onSubmit()" class="drivertrip-form">
+        <h2 text-align: center>Seleccione su Ruta</h2>
+        <div class="form-group">
+            <input formControlName="INICIOR" type="text" placeholder="Inicio de la Ruta" class="form-control">
+        </div>
+        <div class="form-group">
+            <input formControlName="FINALR" type="text" placeholder="Final de la Ruta" class="form-control">
+        </div>
+        <button type="submit" class="dr">Entrar</button>
+      </form>
+    </div>
+  </div>
