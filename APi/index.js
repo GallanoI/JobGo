@@ -69,7 +69,6 @@ app.post('/login', (req, res) => {
 
     const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
 
-    // Guardar el token en el usuario específico
     user.token = token;
     saveUsers(users);
 

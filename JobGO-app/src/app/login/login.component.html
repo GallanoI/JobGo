@@ -1,15 +1,22 @@
 <div class="login-container">
   <div class="img-container">
-    <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width= 70%>
+    <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width="70%">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-      <h2 text-align: center>Iniciar sesión</h2>
+      <h2 class="login-form__title">Iniciar sesión</h2>
       <div class="form-group">
         <input formControlName="username" type="text" placeholder="Nombre de Usuario" class="form-control">
+ 
       </div>
       <div class="form-group">
         <input formControlName="password" type="password" placeholder="Contraseña" class="form-control">
+ 
       </div>
-      <button type="submit" class="login-button">Entrar</button>
+      <button type="submit" class="login-button" [disabled]="loading">
+        <ng-container *ngIf="loading; else buttonText">
+          <span class="spinner"></span>
+        </ng-container>
+        <ng-template #buttonText>Entrar</ng-template>
+      </button>
     </form>
   </div>
 </div>
