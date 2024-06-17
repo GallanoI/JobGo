@@ -1,25 +1,18 @@
 <div class="reg-container">
   <div class="img-container">
-    <img src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width="70%">
+    <img src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width= 70% justify-content= center>
     <form [formGroup]="regForm" (ngSubmit)="onSubmit()" class="reg-form">
-      <h2 class="reg-form__title">Registro</h2>
+      <h2 text-align: center>Registro</h2>
       <div class="form-group">
-        <input formControlName="username" type="text" placeholder="Ingrese su Nombre de Usuario" class="form-control">
+        <input formControlName="username" type="text" placeholder="Ingrese su Nombre de Usurio" class="form-control">
       </div>
       <div class="form-group">
         <input formControlName="email" type="text" placeholder="Ingrese su Correo" class="form-control">
- 
       </div>
       <div class="form-group">
         <input formControlName="password" type="password" placeholder="Ingrese su Contraseña" class="form-control">
- 
       </div>
-      <button type="submit" class="reg-button" [disabled]="loading">
-        <ng-container *ngIf="loading; else buttonText">
-          <span class="spinner"></span>
-        </ng-container>
-        <ng-template #buttonText>Registrar</ng-template>
-      </button>
+      <button type="submit" class="login-button">Registrar</button>
     </form>
   </div>
 </div>

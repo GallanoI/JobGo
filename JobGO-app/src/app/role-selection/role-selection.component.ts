@@ -7,7 +7,7 @@ import { Router } from '@angular/router'; // Importar Router
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './role-selection.component.html',
-  styleUrl: './role-selection.component.scss'
+  styleUrl: './role-selection.component.sass'
 })
 
 export class RoleSelectionComponent implements OnInit {
