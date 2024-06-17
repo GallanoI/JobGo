@@ -22,7 +22,6 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
-      working-directory: JobGO-app
       
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
