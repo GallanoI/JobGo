@@ -6,7 +6,6 @@ const app = express();
 
 
 app.use(express.json());
-app.use(cors()); // Usar cors para permitir solicitudes desde cualquier origen
 
 
 const usersFile = 'users.json';
