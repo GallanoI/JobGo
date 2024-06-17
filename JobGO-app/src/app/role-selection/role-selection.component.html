@@ -1,18 +1,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="roleSelec-container">
+<div class="rol-selection">
   <div class="img-container">
-    <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width= 70%>
-  </div>
-  <div class="roleSelec-container">
-    <form [formGroup]="roleSelecForm" (ngSubmit)="onSubmit()" class="roleSelecForm">
-      <h2 text-align: center>Seleccione su rol:</h2>
-      <div class="form-group">
-        <button class="roleSelec-button" (click)="selectRole('driver')">Conductor</button>
-      </div>
-      <div class="form-group">  
-         <button class="roleSelec-button" (click)="selectRole('passenger')">Pasajero</button>
-       </div>
-    </form>
+    <img src="/assets/img/ValpoFondo.jpg" alt="ValpoFondo" width= 100% justify-content= center>
+    <h2>Seleccione su rol:</h2>
+      <button (click)="selectRole('driver')">Conductor</button>
+      <button (click)="selectRole('passenger')">Pasajero</button>
   </div>
 </div>
