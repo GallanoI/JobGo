@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -20,14 +20,30 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - run: dir
-    - run: ls
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Check out repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+
+    - name: Change directory to JobGO-app
+      run: cd JobGO-app
+
+    - name: Install dependencies
+      run: npm ci
+      working-directory: JobGO-app
+
+    - name: Build the code
+      run: npm run build --if-present
+      working-directory: JobGO-app
+
+    - name: Run tests
+      run: npm test
+      working-directory: JobGO-app
+
+    - name: Run integration tests
+      run: npm run test:integration --if-present
+      working-directory: JobGO-app
