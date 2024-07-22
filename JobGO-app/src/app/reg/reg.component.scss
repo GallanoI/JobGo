@@ -9,7 +9,7 @@ $font-stack: Arial, sans-serif;
 $border-radius: 4px;
 $form-width: 300px;
 
-.reg-container {
+.regfondo-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@ $form-width: 300px;
     background-image: url("/assets/img/ValpoFondo.jpg");
     background-position: center;
     background-size: cover;
-
+    
     .img-container {
       text-align: center;
     }

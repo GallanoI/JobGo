@@ -1,10 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="rol-selection">
+<div class="roleSelecFondo-container">
   <div class="img-container">
-    <img src="/assets/img/ValpoFondo.jpg" alt="ValpoFondo" width= 100% justify-content= center>
-    <h2>Seleccione su rol:</h2>
-      <button (click)="selectRole('driver')">Conductor</button>
-      <button (click)="selectRole('passenger')">Pasajero</button>
+    <img class="centered-image" src="/assets/img/JobgoIco.jpg" alt="JobGo Icono" width="70%">
+    <div class="roleSelec-container">
+      <h2>Seleccione su rol:</h2>
+        <button (click)="selectRole('driver')" class="roleSelec-button">Conductor</button>
+        <button (click)="selectRole('passenger')" class="roleSelec-button">Pasajero</button>
+    </div>
   </div>
 </div>
