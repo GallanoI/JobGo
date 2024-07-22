@@ -1,10 +1,17 @@
 const express = require('express');
 const cors = require('cors'); // Importar cors
+
+let corsOptions = {
+    origin: 'http://www.gallanoi.git.jobgo.com/' // Compliant
+  };
+
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
+//app.use(cors());
+
 
 
 const usersFile = 'users.json';
