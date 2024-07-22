@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Importar cors
 
 let corsOptions = {
-    origin: 'http://www.gallanoi.git.jobgo.com/' // Compliant
+    origin: 'https://www.gallanoi.git.jobgo.com/' // Compliant
   };
 
 const fs = require('fs');
