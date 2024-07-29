@@ -9,7 +9,7 @@ $font-stack: Arial, sans-serif;
 $border-radius: 4px;
 $form-width: 300px;
 
-.login-container {
+.reg-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,22 +20,20 @@ $form-width: 300px;
     background-image: url("/assets/img/ValpoFondo.jpg");
     background-position: center;
     background-size: cover;
-    
+
     .img-container {
       text-align: center;
     }
 
-    .login-form {
-      border: 1px solid lightgreen;
+    .reg-form {
+      border: 1px solid rgb(135, 199, 236);
       padding: 5px;
       align-items: center;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       background: white;
       width: $form-width;
-      
       
       h2 {
         text-align: center;
@@ -54,7 +52,7 @@ $form-width: 300px;
         border-radius: $border-radius;
       }
   
-      .login-button {
+      .reg-button {
         width: 100%;
         padding: 10px;
         border: none;

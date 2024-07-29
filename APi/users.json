@@ -48,5 +48,28 @@
     "mail": "C123112323or@reo.cl",
     "password": "pAssword1",
     "user_type": "Conductor"
+  },
+  {
+    "id": 8,
+    "name": "Sujeto de prueba",
+    "mail": "123@123.cl",
+    "password": "Password1",
+    "user_type": "Conductor",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNzE2OTUxOTA2LCJleHAiOjE3MTY5NTU1MDZ9.uoUg7XvQ1vHh0M1SmDrw6eptPcf8W7z9U5b5N4y9F4w"
+  },
+  {
+    "id": 9,
+    "name": "HolaMundo",
+    "mail": "hola@Mundo.cl",
+    "password": "Holamundo5",
+    "user_type": "Conductor",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNzE4NjAzNDI0LCJleHAiOjE3MTg2MDcwMjR9.P4SF_yF7jDcL4-YD8uZvEaSdBkFFGosUek8EkYd-K2E"
+  },
+  {
+    "id": 10,
+    "name": "persona1",
+    "mail": "persona@1.cl",
+    "password": "Holamundo123",
+    "user_type": "Conductor"
   }
 ]

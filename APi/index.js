@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors'); // Importar cors
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const app = express();
-
 app.use(express.json());
+app.use(cors());
+
 
 const usersFile = 'users.json';
 const viajesFile = 'viajes.json';
@@ -53,7 +55,7 @@ app.post('/login', (req, res) => {
     const { mail, password } = req.body;
 
     if (!mail || !password) {
-        return res.status(400).json({ message: 'Todos los campos son requeridos' });
+        return res.status(400).json({body: req.body, message: 'Todos los campos son requeridos'});
     }
 
     const users = getUsers();
@@ -71,6 +73,12 @@ app.post('/login', (req, res) => {
 
     res.status(200).json({ message: 'Login exitoso', token });
 });
+// Ruta para obtener los datos del usuario autenticado
+app.get('/ping', (req, res) => {
+ 
+    return res.status(200).json( "hola" );
+});
+
 
 // Ruta para obtener los datos del usuario autenticado
 app.get('/me', verifyToken, (req, res) => {

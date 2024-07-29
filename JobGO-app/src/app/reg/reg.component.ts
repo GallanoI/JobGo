@@ -1,56 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Importar CommonModule
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-reg',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], // Incluir CommonModule en las importaciones
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  imports: [ReactiveFormsModule, CommonModule], // Incluir CommonModule
+  templateUrl: './reg.component.html',
+  styleUrls: ['./reg.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class RegComponent implements OnInit {
+  regForm: FormGroup;
   loading: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+    this.regForm = this.fb.group({
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  toRegister(){
-    this.router.navigate(['/reg']);
-  }
-  
   ngOnInit() {}
 
   onSubmit(): void {
     this.loading = true;
-    const username = this.loginForm.value.username;
-    const password = this.loginForm.value.password;
+    const username = this.regForm.value.username;
+    const email = this.regForm.value.email;
+    const password = this.regForm.value.password;
 
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:3000/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        mail: username,
-        password: password
+        name: username,
+        mail: email,
+        password: password,
+        user_type: "Conductor"
       })
     })
       .then(this.handleResponse)
       .then((data: any) => {
         this.loading = false;
-        if (data.token) {
-          localStorage.setItem('authToken', data.token);
-          this.router.navigate(['/select-role']);
-        } else {
-          alert('No se recibió token, inicio de sesión fallido');
-        }
+        alert('Registro exitoso');
+        this.router.navigate(['/login']);
       })
       .catch((error: Error) => {
         this.loading = false;
